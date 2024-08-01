@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --tg-viewport-height: 100vh;
+  --primary-color: #22dcf5;
+  /* --bg-color-primary: white; */
+  --background-gradient-start: #22dcf5;
+  --background-gradient-stop: #1445f3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+    --tg-viewport-height: 100vh;
+    --primary-color: #22dcf5;
+    /* --bg-color-primary: white; */
+    --background-gradient-start: #22dcf5;
+    --background-gradient-stop: #1445f3;
+    /* --background-gradient-start: #22dcf5; */
+    /* --background-gradient-stop: #22dcf5; */
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: "#031329";
+  font-family: "Poppins", sans-serif;
+  /* height: 100vh; */
+  /* overflow: hidden; */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

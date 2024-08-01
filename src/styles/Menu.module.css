@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0f18 0%, #1f2b3e 100%);
+}
+
+.content {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  animation: subtle-glow 1.5s ease-in-out infinite alternate;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.button {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.loginButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.loginButton:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.guestButton {
+  background-color: #ffd700;
+  color: #0a0f18;
+}
+
+.guestButton:hover {
+  background-color: #ffc400;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes subtle-glow {
+  from {
+    text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700;
+  }
+  to {
+    text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .button {
+    font-size: 1rem;
+    padding: 0.8rem 1.6rem;
+  }
+}

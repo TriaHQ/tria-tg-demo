@@ -1,0 +1,12 @@
+{
+  "straight": { "payout": 35 },
+  "split": { "payout": 17 },
+  "street": { "payout": 11 },
+  "corner": { "payout": 8 },
+  "sixLine": { "payout": 5 },
+  "dozen": { "payout": 2 },
+  "column": { "payout": 2 },
+  "oddEven": { "payout": 1 },
+  "redBlack": { "payout": 1 },
+  "highLow": { "payout": 1 }
+}

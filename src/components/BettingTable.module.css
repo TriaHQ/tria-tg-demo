@@ -1,0 +1,206 @@
+.bettingTableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 100vw;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.rouletteTable {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 2px;
+  background-color: #008000;
+  padding: 5px;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.zeroSection {
+  display: flex;
+  justify-content: flex-start;
+  /* margin-bottom: 2px; */
+}
+
+.numbersSection {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1px;
+}
+
+.numberButton {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: none;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.greenButton {
+  background-color: #008000;
+  color: white;
+  height: 20px;
+  border: solid 1px white;
+  font-size: 12px;
+  /* width: 33.33%; */
+}
+
+.redButton {
+  background-color: #ff0000;
+  color: white;
+}
+
+.blackButton {
+  background-color: #000000;
+  color: white;
+}
+
+.selected {
+  opacity: 0.6;
+  transform: scale(0.95);
+}
+
+.betOptions {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  margin-top: 2px;
+}
+
+.betOption {
+  background-color: #008000;
+  color: white;
+  border: 1px solid white;
+  padding: 3px;
+  font-size: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.betControls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.betInput {
+  width: 60px;
+  padding: 5px;
+  font-size: 14px;
+}
+
+.betControls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* ... (previous styles) ... */
+
+.balanceDisplay {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ffd700;
+}
+
+.coinSelection {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.coinButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: transform 0.2s;
+}
+
+.coinButton:hover {
+  transform: scale(1.1);
+}
+
+.coinImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.coinButton:nth-child(1) .coinImage {
+  background-color: #cd7f32; /* Bronze */
+}
+
+.coinButton:nth-child(2) .coinImage {
+  background-color: #c0c0c0; /* Silver */
+}
+
+.coinButton:nth-child(3) .coinImage {
+  background-color: #ffd700; /* Gold */
+}
+
+.selectedCoin {
+  transform: scale(1.2);
+}
+
+.selectedCoin .coinImage {
+  box-shadow: 0 0 10px #ffd700;
+}
+
+.coinCountControl {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.coinCountControl button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.coinCountControl span {
+  font-size: 18px;
+  margin: 0 15px;
+}
+
+.placeBetButton {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.placeBetButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ... (other styles) ... */
