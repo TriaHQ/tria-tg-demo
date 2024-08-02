@@ -21,7 +21,7 @@ const MenuPage: React.FC = () => {
       query: { balance: 1000 },
     })
   }
-
+  // LOGOUT EXAMPLE FOR MORE INFO REFER (https://docs.tria.so/tria-sdk-authenticate-react#3-use-tria-auth-hook)
   const handleLogin = () => {
     impactOccurred("heavy")
     showAuthModal()
@@ -41,6 +41,7 @@ const MenuPage: React.FC = () => {
     <div className='flex flex-col items-center justify-center w-full h-[100vh] '>
       {showTriaModal && (
         <div>
+          {/* To get more Info please refer this section of the docs (https://docs.tria.so/tria-sdk-authenticate-react#5-tria-auth-modal-component) */}
           <TriaAuthModal />
         </div>
       )}

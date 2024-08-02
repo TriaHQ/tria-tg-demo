@@ -272,7 +272,7 @@ export default function Roulette() {
   // ################ TRIA SDK FUNCTION CALLS ###################
   // ############################################################
 
-  // WRITE CONTRACT EXAMPLE
+  // WRITE CONTRACT EXAMPLE Refer (https://docs.tria.so/tria-sdk-authenticate-react#4-use-tria-wallet-hook)
   const handleRedeem = async () => {
     impactOccurred("heavy")
     if (guestLogin) {
@@ -315,7 +315,7 @@ export default function Roulette() {
     setShowMenu(false)
     setShowLoginModal(true)
   }
-  // LOGOUT EXAMPLE
+  // LOGOUT EXAMPLE FOR MORE INFO REFER (https://docs.tria.so/tria-sdk-authenticate-react#3-use-tria-auth-hook)
   const handleLogout = async () => {
     impactOccurred("medium")
 

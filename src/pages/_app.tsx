@@ -25,13 +25,16 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <TriaProvider
+      // TO GET INFO ABOUT ALL THE ADVANCED CONFIGURATION PLEASE REFER THE ADVANCED CONFIGURATIONS SECTION OF DOCS (https://docs.tria.so/tria-sdk-authenticate-react#6-advanced-configurations)
       initialConfig={{
         analyticsKeys: {
           clientId: process.env.NEXT_PUBLIC_CLIENT_ID!,
           projectId: process.env.NEXT_PUBLIC_PROJECT_ID!,
         },
-        chain: "POLYGON",
+        chain: "POLYGON", // TO GET INFO ABOUT ALL THE SUPPORTED CHAINS PLEASE REFER THE SUPPORTED NETWORKS SECTION OF DOCS (https://docs.tria.so/supported-networks)
+
         environment: "testnet",
+        // GAS ABSTRACTION
         aa: {
           pimlicoApiKey: process.env.NEXT_PUBLIC_PIMLICO_API_KEY!,
           isSponsored: true,
@@ -43,6 +46,7 @@ export default function App({ Component, pageProps }: AppProps) {
           supportAa: true,
         },
       }}
+      // TO GET INFO ABOUT ALL THE STYLING PARAMS AND CONFIGS PLEASE REFER TO THE STYLING SECTION OF THE DOCS (https://docs.tria.so/react/styling)
       initialUIConfig={{
         modalMode: true,
         darkMode: true,
