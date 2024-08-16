@@ -1,9 +1,5 @@
 import { copyToClipboard, formatAddress, formatTriaName } from "@/utils"
-import {
-  TriaAuthModal,
-  useTelegramMiniApp,
-  useTriaAuth,
-} from "@tria-sdk/authenticate-react"
+import { useTelegramMiniApp } from "@tria-sdk/authenticate-react"
 import { Account } from "@tria-sdk/connect"
 import { UserController } from "@tria-sdk/core"
 import { useRouter } from "next/router"

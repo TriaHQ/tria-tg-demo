@@ -52,12 +52,13 @@ export default function App({ Component, pageProps }: AppProps) {
         darkMode: true,
         showCloseButton: true,
         layout: ["email-phone", "divider", "web2"],
-        web2LoginMethods: ["google", "apple", "twitter"],
+        web2LoginMethods: ["google", "apple"],
         emailPhoneLoginMethods: ["email"],
       }}
       initialWalletUIConfig={{
         darkMode: true,
         primaryColor: "red",
+        showWallet: false,
         transactionsUIConfig: {
           darkMode: true,
           primaryColor: "#031329",
@@ -67,6 +68,8 @@ export default function App({ Component, pageProps }: AppProps) {
           buttonFontSecondaryColor: "#031329",
           primaryFontColor: "#FFFFFF",
           secondaryFontColor: "#808080",
+          gradientStart: "#22dcf5",
+          gradientStop: "#1445f3",
         },
       }}
     >
