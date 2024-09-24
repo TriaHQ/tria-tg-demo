@@ -45,6 +45,7 @@ export default function App({ Component, pageProps }: AppProps) {
           accountType: "Etherspot",
           supportAa: true,
         },
+        didDomain: "tc",
       }}
       // TO GET INFO ABOUT ALL THE STYLING PARAMS AND CONFIGS PLEASE REFER TO THE STYLING SECTION OF THE DOCS (https://docs.tria.so/react/styling)
       initialUIConfig={{

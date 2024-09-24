@@ -2359,26 +2359,27 @@
     permissionless "^0.1.8"
     subscriptions-transport-ws "^0.11.0"
 
-"@tria-sdk/aa@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/aa/-/aa-2.1.1.tgz#e7a9dbe9b3cbe84db7b90591269e73dea54fadf2"
-  integrity sha512-P6BIw+anT31AedJRAue/xstlg61IwwYIrWm1fznlYnchRHu7VcSepSeVQQSnPJXF8WEQT950ER07G2FWcKCtlQ==
+"@tria-sdk/aa@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/aa/-/aa-2.1.2.tgz#f200374549c3c68e2e484b0c347ce27645beca07"
+  integrity sha512-XumVdvE+BTdUTmMBN6Ur6DzBhhmM2n5IbZcOtqw263NtPEOBlhr0hFJ968pMmxnfRdbp83vrhLpUo5l8VkEGEg==
   dependencies:
     "@etherspot/prime-sdk" "^1.6.4"
     "@fuseio/fusebox-web-sdk" "^0.2.7"
-    "@tria-sdk/constants" "2.1.0"
+    "@tria-sdk/constants" "2.1.2"
+    axios "1.7.3"
     ethers "^6.11.1"
     graphql "^16.9.0"
     permissionless "^0.1.43"
     subscriptions-transport-ws "^0.11.0"
 
-"@tria-sdk/authenticate-react@^1.2.4":
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/authenticate-react/-/authenticate-react-1.2.4.tgz#8f6749cf65123b768e762ba1fa93b757d8bf2b00"
-  integrity sha512-ouL8uSJGJ48BOtmeXb3DpQoB/e67K0i2AZ9GUok9itrdGDLyQTrUIM0q6ea/FK3OME4dRXsM0RyEA3NYg2CDoQ==
+"@tria-sdk/authenticate-react@^2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/authenticate-react/-/authenticate-react-2.0.7.tgz#9750d6a93bd49f150716d70eacea373e98b55357"
+  integrity sha512-1BD43sLTPUBHjX02hGZ+tgztHkx9cQVyqC5hiUueBHJ7XRzdBhDiBuvtDJyVHeQsnU+3oitWv6Cox/qhkVeqmg==
   dependencies:
-    "@tria-sdk/connect" "3.2.9"
-    "@tria-sdk/utils" "2.1.4"
+    "@tria-sdk/connect" "3.2.14"
+    "@tria-sdk/utils" "2.1.5"
     "@types/lodash" "4.17.7"
     "@wagmi/connectors" "4.1.14"
     "@wagmi/core" "2.6.5"
@@ -2391,6 +2392,7 @@
     react-dom "^18.2.0"
     react-google-recaptcha "^3.1.0"
     react-hot-toast "^2.4.1"
+    react-qr-code "2.0.15"
     react-use "^17.5.1"
     tailwind-merge "^2.4.0"
     viem "2.14.1"
@@ -2414,10 +2416,10 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tria-sdk/chains@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/chains/-/chains-2.1.1.tgz#289d763209b5afc306249ed5f52efc385ade33f1"
-  integrity sha512-0WskBh6l76Mj/RslskOesOFYhfDDChcHErdB36b5Eh42BngC4BCqinEwfpqhY3LuOHKh4/SoB718gb5X3YJ9Qg==
+"@tria-sdk/chains@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/chains/-/chains-2.1.2.tgz#dfcc4d6c1814b0be50d78d9ec05da74048115e29"
+  integrity sha512-X14OSWfTZMc8Ax0oqYVJ6q5p3RB85lkEq8QiOjuJu3L+H2/AsCxRrs1e2Ykn0e+XZQfuSzKdib7hnQ2Wuklp1A==
   dependencies:
     "@coral-xyz/anchor" "0.29.0"
     "@debridge-finance/debridge-external-call" "^1.0.8"
@@ -2428,7 +2430,7 @@
     "@solana-developers/helpers" "^2.3.0"
     "@solana/spl-token" "^0.4.0"
     "@solana/web3.js" "^1.89.1"
-    "@tria-sdk/constants" "2.1.0"
+    "@tria-sdk/constants" "2.1.2"
     axios "^1.4.0"
     bip39 "^3.1.0"
     bs58 "^5.0.0"
@@ -2438,15 +2440,15 @@
     tweetnacl "^1.0.3"
     tweetnacl-util "^0.15.1"
 
-"@tria-sdk/connect@3.2.9":
-  version "3.2.9"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/connect/-/connect-3.2.9.tgz#ac4ef3d71e4a72473d1161cc83498b607ba5629a"
-  integrity sha512-TCyHszoIQC9KgXNRPeCyD80MrVG9/CRMgTDTOxgnhVFTOck0awOdp6WuJRUkYT1hnLU+5+h/0XycnRPF3ArWzA==
+"@tria-sdk/connect@3.2.14":
+  version "3.2.14"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/connect/-/connect-3.2.14.tgz#4463a6ccded0661181f67ffe483916746c70fc5b"
+  integrity sha512-fRdQ0XUrG9NIdjPUNgLy0/SkKOHNq0iCcDh9hrEo08Q53oTf8emjfMtvrNizDpgdRJ2g9SYf+ynb4GxGGMPL5A==
   dependencies:
-    "@tria-sdk/aa" "2.1.1"
-    "@tria-sdk/chains" "2.1.1"
-    "@tria-sdk/constants" "2.1.0"
-    "@tria-sdk/utils" "2.1.4"
+    "@tria-sdk/aa" "2.1.2"
+    "@tria-sdk/chains" "2.1.2"
+    "@tria-sdk/constants" "2.1.2"
+    "@tria-sdk/utils" "2.1.5"
     "@wagmi/core" "2.6.5"
     axios "^1.7.2"
     crypto-browserify "^3.12.0"
@@ -2489,10 +2491,10 @@
   resolved "https://registry.yarnpkg.com/@tria-sdk/constants/-/constants-2.0.0.tgz#2e52e74b3838df3a419d0458ba7398c65ad8c947"
   integrity sha512-0B0QTZDcNecuUOFnaRBNnxh+UboXNZ7e9VfUKcnZ3lb3bvL+uurrioNkILyXKdyQFPCUs7ypFHo3PrSayQOclQ==
 
-"@tria-sdk/constants@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/constants/-/constants-2.1.0.tgz#44ae3f6da54a145c1d80b0a12d27454a075e957f"
-  integrity sha512-KiQh3V6Fg8wTne9TruSie7N2t3VrRsEQR4kM281NUiHAanX8MEjiBamghqTddt3p7BWHVhiamd37uhy3RkrZbg==
+"@tria-sdk/constants@2.1.2":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/constants/-/constants-2.1.2.tgz#2e84ce3450a33565f3f202d7377e4c6581a6294e"
+  integrity sha512-893c4MVMsdh7ELbP86/IyR6HBCAuf/kHHkfW+nfE174NeZ/KZ5ZsKbEBBu9aX9q/aDJbS4WY9ghKaE/LdawmAg==
 
 "@tria-sdk/core@^4.4.6":
   version "4.4.7"
@@ -2513,13 +2515,13 @@
     axios "^1.6.7"
     ethers "^5.7.0"
 
-"@tria-sdk/utils@2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/utils/-/utils-2.1.4.tgz#87686395bd5b759e306a2c8300bced88202b0957"
-  integrity sha512-gSElLUHqBT0L/4nrqoGKg3oURuGbNhN0yexkGB4mSprYaufwATJ2BLi1wIz/EvbkBmPHQtuALYnbmDigKb1BoQ==
+"@tria-sdk/utils@2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/utils/-/utils-2.1.5.tgz#9c3159ebaa85e4b3edc06f2587d24158057ef1c7"
+  integrity sha512-43I+zlPD/gUDcHBLdIG7KLT95Lq+qFigpbBCC2hZFB8ajJ5pdKBCPLmYAIEQgIZk5z5tJ+KxMzi2Zjp2Dk6nVA==
   dependencies:
     "@metamask/eth-sig-util" "^7.0.1"
-    "@tria-sdk/constants" "2.1.0"
+    "@tria-sdk/constants" "2.1.2"
     axios "^1.6.7"
     ethers "^5.7.0"
 
@@ -3356,6 +3358,15 @@ axios@0.27.2:
     follow-redirects "^1.14.9"
     form-data "^4.0.0"
 
+axios@1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.3.tgz#a1125f2faf702bc8e8f2104ec3a76fab40257d85"
+  integrity sha512-Ar7ND9pU99eJ9GpoGQKhKf58GpUOgnzuaB7ueNQ5BMi0p+LZ5oaEnfF999fAArcTIBwXTCHAmGcHOZJaWPq9Nw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
 axios@^1.2.6:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.4.tgz#4c8ded1b43683c8dd362973c393f3ede24052aa2"
@@ -3369,6 +3380,15 @@ axios@^1.4.0, axios@^1.5.1, axios@^1.6.7, axios@^1.7.2:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
   integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.7.7:
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.7.tgz#2f554296f9892a72ac8d8e4c5b79c14a91d0a47f"
+  integrity sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
@@ -6266,7 +6286,7 @@ process@^0.11.10:
   resolved "https://registry.yarnpkg.com/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==
 
-prop-types@^15.5.0, prop-types@^15.7.2:
+prop-types@^15.5.0, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -6311,6 +6331,11 @@ qr-code-styling@^1.6.0-rc.1:
   integrity sha512-ModRIiW6oUnsP18QzrRYZSc/CFKFKIdj7pUs57AEVH20ajlglRpN3HukjHk0UbNMTlKGuaYl7Gt6/O5Gg2NU2Q==
   dependencies:
     qrcode-generator "^1.4.3"
+
+qr.js@0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+  integrity sha512-c4iYnWb+k2E+vYpRimHqSu575b1/wKl4XFeJGpFmrJQz5I88v9aY2czh7s0w36srfCM1sXgC/xpoJz5dJfq+OQ==
 
 qrcode-generator@^1.4.3:
   version "1.4.4"
@@ -6435,6 +6460,14 @@ react-native-webview@^11.26.0:
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
+
+react-qr-code@2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/react-qr-code/-/react-qr-code-2.0.15.tgz#fbfc12952c504bcd64275647e9d1ea63251742ce"
+  integrity sha512-MkZcjEXqVKqXEIMVE0mbcGgDpkfSdd8zhuzXEl9QzYeNcw8Hq2oVIzDLWuZN2PQBwM5PWjc2S31K8Q1UbcFMfw==
+  dependencies:
+    prop-types "^15.8.1"
+    qr.js "0.0.0"
 
 react-universal-interface@^0.6.2:
   version "0.6.2"

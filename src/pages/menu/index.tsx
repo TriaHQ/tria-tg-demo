@@ -39,12 +39,11 @@ const MenuPage: React.FC = () => {
 
   return (
     <div className='flex flex-col items-center justify-center w-full h-[100vh] '>
-      {showTriaModal && (
-        <div>
-          {/* To get more Info please refer this section of the docs (https://docs.tria.so/tria-sdk-authenticate-react#5-tria-auth-modal-component) */}
-          <TriaAuthModal />
-        </div>
-      )}
+      <div>
+        {/* To get more Info please refer this section of the docs (https://docs.tria.so/tria-sdk-authenticate-react#5-tria-auth-modal-component) */}
+        <TriaAuthModal />
+      </div>
+
       <div className='w-[80vh] h-[80vh] flex items-center justify-center  fixed top-[-50%]'>
         <img
           src='/images/roulette.svg'

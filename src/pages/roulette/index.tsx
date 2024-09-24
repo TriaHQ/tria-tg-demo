@@ -474,12 +474,12 @@ export default function Roulette() {
         isVisible={isVisible}
         setIsVisible={setIsVisible}
       />
-      {showLoginModal && (
-        <div className='z-[200]'>
-          {" "}
-          <TriaAuthModal />{" "}
-        </div>
-      )}
+
+      <div className='z-[200]'>
+        {" "}
+        <TriaAuthModal />{" "}
+      </div>
+
       {showMenu && (
         <>
           <div
