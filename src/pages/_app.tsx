@@ -4,7 +4,7 @@ import { montserrat } from "@/utils/fonts"
 import "@tria-sdk/authenticate-react/dist/style.css"
 import "@/styles/globals.css"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 export default function App({ Component, pageProps }: AppProps) {
   const {
     setHeaderColor,
@@ -13,30 +13,44 @@ export default function App({ Component, pageProps }: AppProps) {
     showSettingsButton,
     hideMainButton,
   } = useTelegramMiniApp()
-
-  // Setting demo app header color and expanding modal to open in fullscreen mode
   useEffect(() => {
-    setHeaderColor("#031329")
+    setHeaderColor("#080808")
     expand()
     showSettingsButton()
     hideMainButton()
     impactOccurred("heavy")
   }, [setHeaderColor, expand, impactOccurred])
-
+  // useEffect(() => {
+  //   console.log(
+  //     "scrolltop component mounted",
+  //     window.Telegram,
+  //     window.Telegram?.WebApp
+  //   )
+  //   if (
+  //     typeof window !== "undefined" &&
+  //     window.Telegram &&
+  //     window.Telegram.WebApp
+  //   ) {
+  //     const overflow = 100
+  //     document.body.style.overflowY = "hidden"
+  //     document.body.style.marginTop = `${overflow}px`
+  //     document.body.style.height = window.innerHeight + overflow + "px"
+  //     document.body.style.paddingBottom = `${overflow}px`
+  //     window.scrollTo(0, overflow)
+  //   }
+  // }, [])
   return (
     <TriaProvider
-      // TO GET INFO ABOUT ALL THE ADVANCED CONFIGURATION PLEASE REFER THE ADVANCED CONFIGURATIONS SECTION OF DOCS (https://docs.tria.so/tria-sdk-authenticate-react#6-advanced-configurations)
       initialConfig={{
         analyticsKeys: {
-          clientId: process.env.NEXT_PUBLIC_CLIENT_ID!,
-          projectId: process.env.NEXT_PUBLIC_PROJECT_ID!,
+          clientId: "b48d8230-57f9-43fb-a952-722668bb3521",
+          projectId: "f5c9aa2c-a94e-42c5-a85b-b943f07b8bc9",
         },
-        chain: "POLYGON", // TO GET INFO ABOUT ALL THE SUPPORTED CHAINS PLEASE REFER THE SUPPORTED NETWORKS SECTION OF DOCS (https://docs.tria.so/supported-networks)
-
+        chain: "POLYGON",
         environment: "testnet",
-        // GAS ABSTRACTION
+        // triaStaging: "staging",
         aa: {
-          pimlicoApiKey: process.env.NEXT_PUBLIC_PIMLICO_API_KEY!,
+          pimlicoApiKey: "af86d1ab-0dc4-4be7-96eb-ce9fc9fd48c0",
           isSponsored: true,
           sponsorshipPolicyIds: {
             FUSE: "sp_cheerful_thing",
@@ -47,19 +61,19 @@ export default function App({ Component, pageProps }: AppProps) {
         },
         didDomain: "tc",
       }}
-      // TO GET INFO ABOUT ALL THE STYLING PARAMS AND CONFIGS PLEASE REFER TO THE STYLING SECTION OF THE DOCS (https://docs.tria.so/react/styling)
       initialUIConfig={{
         modalMode: true,
         darkMode: true,
         showCloseButton: true,
-        layout: ["email-phone", "divider", "web2"],
-        web2LoginMethods: ["google", "apple"],
+        web2LoginMethods: ["google", "apple", "telegram"],
         emailPhoneLoginMethods: ["email"],
+        web3LoginMethods: [],
+        showDivider: false,
       }}
       initialWalletUIConfig={{
         darkMode: true,
+        enableWallet: true,
         primaryColor: "red",
-        showWallet: false,
         transactionsUIConfig: {
           darkMode: true,
           primaryColor: "#031329",
@@ -69,18 +83,18 @@ export default function App({ Component, pageProps }: AppProps) {
           buttonFontSecondaryColor: "#031329",
           primaryFontColor: "#FFFFFF",
           secondaryFontColor: "#808080",
-          gradientStart: "#22dcf5",
-          gradientStop: "#1445f3",
+          gradientStart: "#303030",
+          gradientStop: "#080808",
         },
       }}
     >
       <div
         id='main-doc'
         style={{
-          backgroundColor: "#031329",
+          backgroundColor: "#080808", // Dark blue background
           minHeight: "100vh",
           height: "100%",
-          color: "white",
+          color: "white", // White text color
         }}
         className={`${montserrat.variable} font-sans`}
       >

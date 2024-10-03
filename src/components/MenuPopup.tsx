@@ -1,9 +1,15 @@
 import { copyToClipboard, formatAddress, formatTriaName } from "@/utils"
-import { useTelegramMiniApp } from "@tria-sdk/authenticate-react"
+import {
+  TriaAuthModal,
+  useTelegramMiniApp,
+  useTriaAuth,
+  useTriaWallet,
+} from "@tria-sdk/authenticate-react"
 import { Account } from "@tria-sdk/connect"
 import { UserController } from "@tria-sdk/core"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
+import SingleLine from "./SingleLineLoader"
 interface Chain {
   chainName: string
   logo: string
@@ -15,12 +21,14 @@ const MenuPopup = ({
   triaBalance,
   handleLogout,
   handleTopUp,
+  triaBalanceLoading,
 }: {
   avatar?: { avatar?: string; bg?: string }
   account?: Account
   triaBalance?: number
   handleLogout: () => void
   handleTopUp: () => void
+  triaBalanceLoading: boolean
 }) => {
   const router = useRouter()
   const guestLogin =
@@ -34,6 +42,7 @@ const MenuPopup = ({
   const [copied, setIsCopied] = useState(false)
   const [copiedText, setCopiedText] = useState("")
   const { impactOccurred } = useTelegramMiniApp()
+  const { toggleWallet } = useTriaWallet()
   const toggleShowAddress = () => {
     impactOccurred("light")
     setShowAddress(!showAddress)
@@ -74,7 +83,7 @@ const MenuPopup = ({
     }
   }, [copied])
   return (
-    <div className='w-[250px] h-auto rounded-[12.5px] border-solid border-[0.8px] border-[#bed4f326] fixed top-[70px] left-[20px] z-50 bg-[#031329]'>
+    <div className='w-[250px] h-auto rounded-[12.5px] border-solid border-[0.8px] border-[#bed4f326] fixed top-[70px] left-[20px] z-50 bg-[#202020]'>
       <div className='h-[56px] py-[12px] px-[16px] border-b-[0.8px] border-solid border-[#bed4f326] flex items-center justify-start gap-[12.5px]'>
         {guestLogin ? (
           <img src='/images/guestimage.png' className='w-[32px] h-[32px]' />
@@ -93,7 +102,13 @@ const MenuPopup = ({
                 ? formatTriaName(account?.triaName)
                 : account?.triaName}
             </p>
-            <p className='text-[12px] text-[#808080] font-[600]'>{`$ ${triaBalance}`}</p>
+            {/* {triaBalanceLoading ? (
+              <SingleLine />
+            ) : (
+              <p className='text-[12px] text-[#808080] font-[600]'>{`$ ${triaBalance?.toFixed(
+                4
+              )}`}</p>
+            )} */}
           </div>
         )}
         {guestLogin && (
@@ -109,102 +124,118 @@ const MenuPopup = ({
 
       {!guestLogin && (
         <div
-          className={`${
-            showAddress
-              ? "h-auto transform duration-500"
-              : "h-[56px] transform duration-500"
-          }  py-[12px] px-[16px] border-b-[0.8px] border-solid border-[#bed4f326] flex flex-col items-center justify-start`}
+          className={`h-[56px] text-[#FAFAFA]  py-[12px] px-[16px] border-b-[0.8px] border-solid border-[#bed4f326] flex items-center justify-between`}
+          onClick={() => toggleWallet()}
         >
-          <div
-            className='flex items-center justify-between w-full'
-            onClick={toggleShowAddress}
-          >
-            <div className='flex flex-col gap-[6px]'>
-              <p className='text-[13px] font-[600] leading-[120%]'>Addresses</p>
-              <p className='text-[11px] font-[600] leading-[120%] text-[#808080]'>
-                {" "}
-                2 network addresses
-              </p>
-            </div>
-            <img
-              src='/images/arrow-down.svg'
-              alt=''
-              className={`${
-                showAddress
-                  ? "rotate-180 transform duration-200"
-                  : "rotate-0 transform duration-200"
-              } `}
-            />
+          <div className='flex flex-col gap-[6px]'>
+            <p className='text-[13px] font-[600] leading-[120%]'>Show Wallet</p>
+            {triaBalanceLoading ? (
+              <SingleLine />
+            ) : (
+              <p className='text-[12px] text-[#808080] font-[600]'>{`$ ${triaBalance?.toFixed(
+                4
+              )}`}</p>
+            )}
           </div>
-          {showAddress && (
-            <div className='w-full '>
-              <div className='w-full h-[70px] py-[10px] flex items-center justify-between'>
-                <div className='flex flex-col gap-[4px]'>
-                  <p className='text-[13px] font-[600] leading-[120%]'>
-                    Ethereum (EOA)
-                  </p>
-                  <p className='text-[13px] font-[600] text-[#808080] leading-[120%]'>
-                    {formatAddress(account?.evm?.address || "")}
-                  </p>
-                  <div className='flex gap-[2px]'>
-                    {eoaChains?.map((chain) => (
-                      <div className='w-[14px] h-[14px] rounded-[2px]'>
-                        <img
-                          src={chain?.logo}
-                          className='w-[14px] h-[14px] rounded-[2px]'
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div
-                  className='w-[30px] h-[30px]'
-                  onClick={() => handleCopyClick(account?.evm?.address || "")}
-                >
-                  {copied && copiedText === account?.evm?.address ? (
-                    <p className='ml-[-10px] text-[#808080] text-[10px] font-[600]'>
-                      Copied!
-                    </p>
-                  ) : (
-                    <img src='/images/copy.svg' className='w-[20px] h-[20px]' />
-                  )}
-                </div>
-              </div>
-              <div className='w-full h-[70px] py-[10px] flex items-center justify-between'>
-                <div className='flex flex-col gap-[4px]'>
-                  <p className='text-[13px] font-[600] leading-[120%]'>
-                    Ethereum (AA)
-                  </p>
-                  <p className='text-[13px] font-[600] text-[#808080] leading-[120%]'>
-                    {formatAddress(account?.aa?.address || "")}
-                  </p>
-                  <div className='flex gap-[2px]'>
-                    {aaChains?.map((chain) => (
-                      <div className='w-[14px] h-[14px] rounded-[2px]'>
-                        <img
-                          src={chain?.logo}
-                          className='w-[14px] h-[14px] rounded-[2px]'
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div
-                  className='w-[30px] h-[30px]'
-                  onClick={() => handleCopyClick(account?.aa?.address || "")}
-                >
-                  {copied && copiedText === account?.aa?.address ? (
-                    <p className='ml-[-10px] text-[#808080] text-[10px] font-[600]'>
-                      Copied!
-                    </p>
-                  ) : (
-                    <img src='/images/copy.svg' className='w-[20px] h-[20px]' />
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
+          <img src='/images/empty-wallet.svg' alt='' />
         </div>
+        // <div
+        //   className={`${
+        //     showAddress
+        //       ? "h-auto transform duration-500"
+        //       : "h-[56px] transform duration-500"
+        //   }  py-[12px] px-[16px] border-b-[0.8px] border-solid border-[#bed4f326] flex flex-col items-center justify-start`}
+        // >
+        //   <div
+        //     className='flex items-center justify-between w-full'
+        //     onClick={toggleShowAddress}
+        //   >
+        //     <div className='flex flex-col gap-[6px]'>
+        //       <p className='text-[13px] font-[600] leading-[120%]'>Addresses</p>
+        //       <p className='text-[11px] font-[600] leading-[120%] text-[#808080]'>
+        //         {" "}
+        //         2 network addresses
+        //       </p>
+        //     </div>
+        //     <img
+        //       src='/images/arrow-down.svg'
+        //       alt=''
+        //       className={`${
+        //         showAddress
+        //           ? "rotate-180 transform duration-200"
+        //           : "rotate-0 transform duration-200"
+        //       } `}
+        //     />
+        //   </div>
+        //   {showAddress && (
+        //     <div className='w-full '>
+        //       <div className='w-full h-[70px] py-[10px] flex items-center justify-between'>
+        //         <div className='flex flex-col gap-[4px]'>
+        //           <p className='text-[13px] font-[600] leading-[120%]'>
+        //             Ethereum (EOA)
+        //           </p>
+        //           <p className='text-[13px] font-[600] text-[#808080] leading-[120%]'>
+        //             {formatAddress(account?.evm?.address || "")}
+        //           </p>
+        //           <div className='flex gap-[2px]'>
+        //             {eoaChains?.map((chain) => (
+        //               <div className='w-[14px] h-[14px] rounded-[2px]'>
+        //                 <img
+        //                   src={chain?.logo}
+        //                   className='w-[14px] h-[14px] rounded-[2px]'
+        //                 />
+        //               </div>
+        //             ))}
+        //           </div>
+        //         </div>
+        //         <div
+        //           className='w-[30px] h-[30px]'
+        //           onClick={() => handleCopyClick(account?.evm?.address || "")}
+        //         >
+        //           {copied && copiedText === account?.evm?.address ? (
+        //             <p className='ml-[-10px] text-[#808080] text-[10px] font-[600]'>
+        //               Copied!
+        //             </p>
+        //           ) : (
+        //             <img src='/images/copy.svg' className='w-[20px] h-[20px]' />
+        //           )}
+        //         </div>
+        //       </div>
+        //       <div className='w-full h-[70px] py-[10px] flex items-center justify-between'>
+        //         <div className='flex flex-col gap-[4px]'>
+        //           <p className='text-[13px] font-[600] leading-[120%]'>
+        //             Ethereum (AA)
+        //           </p>
+        //           <p className='text-[13px] font-[600] text-[#808080] leading-[120%]'>
+        //             {formatAddress(account?.aa?.address || "")}
+        //           </p>
+        //           <div className='flex gap-[2px]'>
+        //             {aaChains?.map((chain) => (
+        //               <div className='w-[14px] h-[14px] rounded-[2px]'>
+        //                 <img
+        //                   src={chain?.logo}
+        //                   className='w-[14px] h-[14px] rounded-[2px]'
+        //                 />
+        //               </div>
+        //             ))}
+        //           </div>
+        //         </div>
+        //         <div
+        //           className='w-[30px] h-[30px]'
+        //           onClick={() => handleCopyClick(account?.aa?.address || "")}
+        //         >
+        //           {copied && copiedText === account?.aa?.address ? (
+        //             <p className='ml-[-10px] text-[#808080] text-[10px] font-[600]'>
+        //               Copied!
+        //             </p>
+        //           ) : (
+        //             <img src='/images/copy.svg' className='w-[20px] h-[20px]' />
+        //           )}
+        //         </div>
+        //       </div>
+        //     </div>
+        //   )}
+        // </div>
       )}
       {!guestLogin && (
         <div

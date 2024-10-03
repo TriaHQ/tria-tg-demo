@@ -1,16 +1,19 @@
 "use client"
 import React, { useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import styles from "../../styles/Menu.module.css"
 import {
   TriaAuthModal,
   useTelegramMiniApp,
+  useTria,
   useTriaAuth,
 } from "@tria-sdk/authenticate-react"
+import Image from "next/image"
 
 const MenuPage: React.FC = () => {
   const [showTriaModal, setShowTriaModal] = useState<boolean>()
   const router = useRouter()
-  const { showAuthModal, userState, getAccount } = useTriaAuth()
+  const { showAuthModal, userState, logout, getAccount } = useTriaAuth()
   const { impactOccurred } = useTelegramMiniApp()
 
   const handleGuestPlay = () => {
@@ -21,7 +24,7 @@ const MenuPage: React.FC = () => {
       query: { balance: 1000 },
     })
   }
-  // LOGOUT EXAMPLE FOR MORE INFO REFER (https://docs.tria.so/tria-sdk-authenticate-react#3-use-tria-auth-hook)
+
   const handleLogin = () => {
     impactOccurred("heavy")
     showAuthModal()
@@ -40,13 +43,12 @@ const MenuPage: React.FC = () => {
   return (
     <div className='flex flex-col items-center justify-center w-full h-[100vh] '>
       <div>
-        {/* To get more Info please refer this section of the docs (https://docs.tria.so/tria-sdk-authenticate-react#5-tria-auth-modal-component) */}
         <TriaAuthModal />
       </div>
 
-      <div className='w-[80vh] h-[80vh] flex items-center justify-center  fixed top-[-50%]'>
+      <div className='w-[80vh] h-[80vh] flex items-center justify-center  fixed top-[-30%]'>
         <img
-          src='/images/roulette.svg'
+          src='/images/roulette2.svg'
           className='w-[120vw] h-[120vw] '
           alt='roulette'
         />

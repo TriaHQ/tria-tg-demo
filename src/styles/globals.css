@@ -9,8 +9,8 @@
   --tg-viewport-height: 100vh;
   --primary-color: #22dcf5;
   /* --bg-color-primary: white; */
-  --background-gradient-start: #22dcf5;
-  --background-gradient-stop: #1445f3;
+  --background-gradient-start: #303030;
+  --background-gradient-stop: #080808;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,8 +21,8 @@
     --tg-viewport-height: 100vh;
     --primary-color: #22dcf5;
     /* --bg-color-primary: white; */
-    --background-gradient-start: #22dcf5;
-    --background-gradient-stop: #1445f3;
+    --background-gradient-start: #303030;
+    --background-gradient-stop: #080808;
     /* --background-gradient-start: #22dcf5; */
     /* --background-gradient-stop: #22dcf5; */
   }

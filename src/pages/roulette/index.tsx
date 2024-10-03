@@ -3,7 +3,9 @@ import React, { useEffect, useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import BettingTable from "../../components/BettingTable"
 import wheelNumbers from "../../data/wheelNumbers.json"
+import styles from "../../styles/Home.module.css"
 import { useRouter } from "next/router"
+import toast, { Toaster } from "react-hot-toast"
 import LoadingSpinner from "@/components/LoadingSpinner"
 import {
   TriaAuthModal,
@@ -12,7 +14,11 @@ import {
   useTriaWallet,
 } from "@tria-sdk/authenticate-react"
 import MenuPopup from "@/components/MenuPopup"
-import { Account, ContractDetails } from "@tria-sdk/connect"
+import {
+  Account,
+  ContractDetails,
+  wagmiConnectedAsync,
+} from "@tria-sdk/connect"
 import { UserController } from "@tria-sdk/core"
 import { getColorForNumber } from "@/utils"
 import { useToast } from "@/hooks/useToast"
@@ -22,6 +28,14 @@ import Topbar from "@/components/Topbar"
 const DynamicWheel = dynamic(() => import("../../components/Wheel"), {
   ssr: false,
 })
+
+interface WheelData {
+  option: string
+  style: {
+    backgroundColor: string
+    textColor: string
+  }
+}
 
 type GameStage = "betting" | "spinning"
 
@@ -49,7 +63,9 @@ export default function Roulette() {
   const [showMenu, setShowMenu] = useState<boolean>(false)
   const [fetchBalance, setFetchBalance] = useState<boolean>()
   const [triaBalance, setTriaBalance] = useState<number>()
+  const [triaBalanceLoading, setTriaBalanceLoading] = useState<boolean>(false)
   const [showLoginModal, setShowLoginModal] = useState<boolean>()
+  const [hasScrolled, setHasScrolled] = useState(false)
   const [randomBet, setRandomBet] = useState<number | null>(null)
 
   const router = useRouter()
@@ -59,13 +75,11 @@ export default function Roulette() {
   const { impactOccurred } = useTelegramMiniApp()
   const { isVisible, message, showToast, setIsVisible, type, title } =
     useToast()
+  // const MemoizedDynamicWheel = React.memo(DynamicWheel)
   const MemoizedToast = React.memo(Toast)
   const userController = new UserController(
     process.env.NEXT_PUBLIC_SDK_BASE_URL
   )
-  // ############################################################
-  // ######################## GAME LOGIC ########################
-  // ############################################################
   const guestLogin =
     typeof localStorage != "undefined"
       ? localStorage.getItem("guestLogin")
@@ -95,6 +109,8 @@ export default function Roulette() {
     impactOccurred("heavy")
     console.log("Bet placed:", { number, amount })
     if (amount > balance) {
+      // alert("Insufficient balance!")
+      toast.error("Insufficient balance!")
       return
     }
     setPlayerBet({ number, amount })
@@ -123,9 +139,13 @@ export default function Roulette() {
     } catch (error) {
       console.error("Error in spinWheel:", error)
       setGameStage("betting")
-      // Revert the bet in case of issues
+      // Optionally, revert the bet
       updateBalance(balance + amount)
       setPlayerBet({ number: null, amount: 0 })
+      // alert("An error occurred while spinning the wheel. Please try again.")
+      toast.error(
+        "An error occurred while spinning the wheel. Please try again."
+      )
     }
   }
   const spinWheel = () => {
@@ -165,6 +185,7 @@ export default function Roulette() {
           )}** color.`,
           "success"
         )
+        toast.success(`Congratulations! You won $${winnings}`)
       } else if (randomBet) {
         console.log(
           "Random Winning number:",
@@ -181,6 +202,7 @@ export default function Roulette() {
             )}** color.`,
             "success"
           )
+          toast.success(`Congratulations! You won $${winnings}`)
         } else if (
           randomBet === 4 &&
           getColorForNumber(winningNumber) === "black"
@@ -193,12 +215,14 @@ export default function Roulette() {
             )}** color.`,
             "success"
           )
+          toast.success(`Congratulations! You won $${winnings}`)
         } else if (
           randomBet === 1 &&
           winningNumber <= 18 &&
           winningNumber >= 1
         ) {
           winnings = playerBet.amount * 10
+          toast.success(`Congratulations! You won $${winnings}`)
           showToast(
             `Congratulations! You won!`,
             `You won **$${winnings}** on number **${winningNumber}** and **${getColorForNumber(
@@ -208,6 +232,7 @@ export default function Roulette() {
           )
         } else if (randomBet === 6 && winningNumber > 18) {
           winnings = playerBet.amount * 10
+          toast.success(`Congratulations! You won $${winnings}`)
           showToast(
             `Congratulations! You won!`,
             `You won **$${winnings}** on number **${winningNumber}** and **${getColorForNumber(
@@ -224,6 +249,7 @@ export default function Roulette() {
             )}** color.`,
             "success"
           )
+          toast.success(`Congratulations! You won $${winnings}`)
         } else if (randomBet === 5 && winningNumber % 2 != 0) {
           winnings = playerBet.amount * 10
           showToast(
@@ -233,7 +259,11 @@ export default function Roulette() {
             )}** color.`,
             "success"
           )
+          toast.success(`Congratulations! You won $${winnings}`)
         } else {
+          toast.error(
+            `Sorry, you lost $${playerBet.amount}. The winning number was ${winningNumber}.`
+          )
           showToast(
             `Better luck next time!`,
             `The winning number was **${winningNumber}** and color was **${getColorForNumber(
@@ -243,6 +273,9 @@ export default function Roulette() {
           )
         }
       } else {
+        toast.error(
+          `Sorry, you lost $${playerBet.amount}. The winning number was ${winningNumber}.`
+        )
         showToast(
           `Better luck next time!`,
           `The winning number was **${winningNumber}** and color was **${getColorForNumber(
@@ -250,6 +283,9 @@ export default function Roulette() {
           )}**. You lost **$${playerBet.amount}**`,
           "error"
         )
+        // alert(
+        // `Sorry, you lost $${playerBet.amount}. The winning number was ${winningNumber}.`
+        // );
       }
       updateBalance(balance + winnings)
     } else {
@@ -259,25 +295,12 @@ export default function Roulette() {
     setWinningNumber(null)
     setRandomBet(null)
   }
-  const handleTopUp = () => {
-    setBalance((prevBalance) => prevBalance + 1000)
-    localStorage.setItem(
-      `${triaAccount?.triaName}-balance`,
-      `${balance + 1000}`
-    )
-  }
-  // ##################### GAME LOGIC  ENDS #####################
 
-  // ############################################################
-  // ################ TRIA SDK FUNCTION CALLS ###################
-  // ############################################################
-
-  // WRITE CONTRACT EXAMPLE Refer (https://docs.tria.so/tria-sdk-authenticate-react#4-use-tria-wallet-hook)
   const handleRedeem = async () => {
     impactOccurred("heavy")
     if (guestLogin) {
       localStorage.setItem("called-from-redeem", "true")
-      handleLogin()
+      handleLogout()
     } else {
       const contractDetails: ContractDetails = {
         contractAddress: "0x1eeb2910c9f2e1e60294271634832824b159f61a",
@@ -310,23 +333,35 @@ export default function Roulette() {
       }
     }
   }
-  const handleLogin = async () => {
-    showAuthModal()
-    setShowMenu(false)
-    setShowLoginModal(true)
-  }
-  // LOGOUT EXAMPLE FOR MORE INFO REFER (https://docs.tria.so/tria-sdk-authenticate-react#3-use-tria-auth-hook)
   const handleLogout = async () => {
     impactOccurred("medium")
 
     if (guestLogin) {
-      handleLogin()
+      showAuthModal()
+      setShowMenu(false)
+      setShowLoginModal(true)
     } else {
       await logout()
       router.push("/")
     }
   }
-  // GET CALLS TO FETCH USER ASSETS, TRIA/PROFILE PHOTO, TOTAL BALANCE
+
+  const handleTopUp = () => {
+    setBalance((prevBalance) => prevBalance + 1000)
+    localStorage.setItem(
+      `${triaAccount?.triaName}-balance`,
+      `${balance + 1000}`
+    )
+    showToast(
+      "Coins Added!",
+      "1000 test coins added to your account successfully! 🚀",
+      "message"
+    )
+    setTimeout(() => {
+      setIsVisible(false)
+    }, 2000)
+  }
+  // Get Calls
   const getUserAssets = async (triaName: string) => {
     const response = await userController.getAssetDetails({
       chain: { chainName: "POLYGON" },
@@ -355,9 +390,11 @@ export default function Roulette() {
     setAvatar(res?.response[item]?.[0]?.avatar)
   }
   const getTotalBalance = async (triaName: string) => {
+    setTriaBalanceLoading(true)
     const response = await userController.getTotalBalance(triaName)
     console.log("total balance response", response?.data?.balance)
     setTriaBalance(response?.data?.balance)
+    setTriaBalanceLoading(false)
   }
 
   useEffect(() => {
@@ -467,19 +504,21 @@ export default function Roulette() {
       //
       ref={scrollableRef}
     >
+      {/* <Toaster /> */}
       <MemoizedToast
         type={type}
         title={title}
         message={message}
         isVisible={isVisible}
+        // onHide={hideToast}
         setIsVisible={setIsVisible}
       />
-
-      <div className='z-[200]'>
-        {" "}
-        <TriaAuthModal />{" "}
-      </div>
-
+      {showLoginModal && (
+        <div className='z-[200]'>
+          {" "}
+          <TriaAuthModal />{" "}
+        </div>
+      )}
       {showMenu && (
         <>
           <div
@@ -494,6 +533,7 @@ export default function Roulette() {
             triaBalance={triaBalance}
             handleLogout={handleLogout}
             handleTopUp={handleTopUp}
+            triaBalanceLoading={triaBalanceLoading}
           />
         </>
       )}
