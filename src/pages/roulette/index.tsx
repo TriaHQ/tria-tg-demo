@@ -164,6 +164,9 @@ export default function Roulette() {
       `Your bet has been placed. The wheel is spinning...`,
       "message"
     )
+    setTimeout(() => {
+      setIsVisible(false)
+    }, 2000)
     setMustSpin(true)
   }
 
@@ -287,6 +290,9 @@ export default function Roulette() {
         // `Sorry, you lost $${playerBet.amount}. The winning number was ${winningNumber}.`
         // );
       }
+      setTimeout(() => {
+        setIsVisible(false)
+      }, 2000)
       updateBalance(balance + winnings)
     } else {
       console.error("Winning number is null")

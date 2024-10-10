@@ -43,14 +43,14 @@ export default function App({ Component, pageProps }: AppProps) {
     <TriaProvider
       initialConfig={{
         analyticsKeys: {
-          clientId: "b48d8230-57f9-43fb-a952-722668bb3521",
-          projectId: "f5c9aa2c-a94e-42c5-a85b-b943f07b8bc9",
+          clientId: process.env.NEXT_PUBLIC_CLIENT_ID!,
+          projectId: process.env.NEXT_PUBLIC_PROJECT_ID!,
         },
         chain: "POLYGON",
         environment: "testnet",
         // triaStaging: "staging",
         aa: {
-          pimlicoApiKey: "af86d1ab-0dc4-4be7-96eb-ce9fc9fd48c0",
+          pimlicoApiKey: process.env.NEXT_PUBLIC_PIMLICO_API_KEY!,
           isSponsored: true,
           sponsorshipPolicyIds: {
             FUSE: "sp_cheerful_thing",
@@ -76,9 +76,10 @@ export default function App({ Component, pageProps }: AppProps) {
         primaryColor: "red",
         transactionsUIConfig: {
           darkMode: true,
-          primaryColor: "#031329",
+          primaryColor: "#080808",
           buttonPrimaryColor:
             "linear-gradient(180deg, #21CC51 0%, #166E55 100%)",
+          borderColor: "#21CC5121",
           buttonSecondaryColor: "#FFF",
           buttonFontSecondaryColor: "#031329",
           primaryFontColor: "#FFFFFF",
