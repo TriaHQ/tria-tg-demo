@@ -48,6 +48,11 @@ export default function App({ Component, pageProps }: AppProps) {
         },
         chain: "POLYGON",
         environment: "testnet",
+        autoDIDCreationEnabled: true,
+        telegramAutoAuthOpts: {
+          enableAutoLogin: true,
+          enableAutoDidCreation: false,
+        },
         // triaStaging: "staging",
         aa: {
           pimlicoApiKey: process.env.NEXT_PUBLIC_PIMLICO_API_KEY!,
@@ -65,8 +70,9 @@ export default function App({ Component, pageProps }: AppProps) {
         modalMode: true,
         darkMode: true,
         showCloseButton: true,
-        web2LoginMethods: ["google", "apple", "telegram"],
-        emailPhoneLoginMethods: ["email"],
+        layout: ["web2"],
+        web2LoginMethods: ["telegram_miniapp"],
+        emailPhoneLoginMethods: [],
         web3LoginMethods: [],
         showDivider: false,
       }}

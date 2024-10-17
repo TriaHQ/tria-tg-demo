@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import styles from "../../styles/Menu.module.css"
 import {
   TriaAuthModal,
+  useTelegramAutoAuth,
   useTelegramMiniApp,
   useTria,
   useTriaAuth,
@@ -15,7 +16,9 @@ const MenuPage: React.FC = () => {
   const router = useRouter()
   const { showAuthModal, userState, logout, getAccount } = useTriaAuth()
   const { impactOccurred } = useTelegramMiniApp()
-
+  const { handleTelegramAutoAuth } = useTelegramAutoAuth({
+    enableAutoDidCreation: true,
+  })
   const handleGuestPlay = () => {
     impactOccurred("heavy")
     localStorage.setItem("guestLogin", "true")
@@ -26,10 +29,8 @@ const MenuPage: React.FC = () => {
   }
 
   const handleLogin = () => {
-    impactOccurred("heavy")
+    handleTelegramAutoAuth()
     showAuthModal()
-    setShowTriaModal(true)
-    console.log("Login clicked")
   }
 
   useEffect(() => {

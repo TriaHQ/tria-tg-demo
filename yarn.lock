@@ -2373,14 +2373,15 @@
     permissionless "^0.1.43"
     subscriptions-transport-ws "^0.11.0"
 
-"@tria-sdk/authenticate-react@^2.0.12":
-  version "2.0.12"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/authenticate-react/-/authenticate-react-2.0.12.tgz#d65dd4f8260a288f6e2f8eb9317c10346d6d6c0a"
-  integrity sha512-UBOtlRuekXsbBX7B+55b3tgz1/N6V7HW3VnP8KhCw6h/q5OiZdh5ID26eVjuGkTnCE3bj+OfxpucdJkBIm1o3A==
+"@tria-sdk/authenticate-react@^2.0.16":
+  version "2.0.16"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/authenticate-react/-/authenticate-react-2.0.16.tgz#414c1305e088634a39dcbcfd9ffbada55d5d4531"
+  integrity sha512-uwYpeZkGuyHUTN6qkr31xrCwIbRyvHiNgX9nsNVkmm7fcJrLi95bqnVjpUPI8bEdCeyyKx9GozxQYkbWFb1dug==
   dependencies:
     "@tria-sdk/connect" "3.2.14"
     "@tria-sdk/utils" "2.1.5"
     "@types/lodash" "4.17.7"
+    "@wagmi/chains" "1.8.0"
     "@wagmi/connectors" "4.1.14"
     "@wagmi/core" "2.6.5"
     cancelable-promise "^4.3.1"
@@ -2666,6 +2667,11 @@
   integrity sha512-4+q7P5h3SpJxaBft0Dzpbr6lmMaqh0Jr2tbhJZ/luAwvD7ohSCniYkwz/pLxuT2h0EOa6QADgJj1Ko+TzRfZ+w==
   dependencies:
     "@types/node" "*"
+
+"@wagmi/chains@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@wagmi/chains/-/chains-1.8.0.tgz#70e5fd0d50c8f9b8e63585eaf8544481e71707d3"
+  integrity sha512-UXo0GF0Cl0+neKC2KAmVAahv8L/5rACbFRRqkDvHMefzY6Fh7yzJd8F4GaGNNG3w4hj8eUB/E3+dEpaTYDN62w==
 
 "@wagmi/connectors@4.1.14":
   version "4.1.14"

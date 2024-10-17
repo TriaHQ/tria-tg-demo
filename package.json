@@ -8,7 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tria-sdk/authenticate-react": "^2.0.12",
+    "@tria-sdk/authenticate-react": "^2.0.16",
     "@tria-sdk/connect": "^3.2.6",
     "@tria-sdk/core": "^4.4.6",
     "@tria-sdk/utils": "^2.1.1",
