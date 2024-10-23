@@ -71,7 +71,7 @@ export default function App({ Component, pageProps }: AppProps) {
         darkMode: true,
         showCloseButton: true,
         layout: ["email-phone", "web2"],
-        web2LoginMethods: ["google", "apple", "telegram"],
+        web2LoginMethods: ["google", "apple", "telegram_miniapp"],
         emailPhoneLoginMethods: ["email-otp"],
         web3LoginMethods: [],
         showDivider: false,
