@@ -2373,10 +2373,10 @@
     permissionless "^0.1.43"
     subscriptions-transport-ws "^0.11.0"
 
-"@tria-sdk/authenticate-react@^2.0.16":
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/@tria-sdk/authenticate-react/-/authenticate-react-2.0.16.tgz#414c1305e088634a39dcbcfd9ffbada55d5d4531"
-  integrity sha512-uwYpeZkGuyHUTN6qkr31xrCwIbRyvHiNgX9nsNVkmm7fcJrLi95bqnVjpUPI8bEdCeyyKx9GozxQYkbWFb1dug==
+"@tria-sdk/authenticate-react@^2.0.18":
+  version "2.0.18"
+  resolved "https://registry.yarnpkg.com/@tria-sdk/authenticate-react/-/authenticate-react-2.0.18.tgz#b4abb04e9755955f3296fed8c0a380d892c2a479"
+  integrity sha512-cQd7+9ouxH2KJnT01dQSE9wmtqIni33IeJ+A6VVFw/ikdOKiU7XSlG3jPQ3BdumbRMpqo0p2EzWokvxxc1mRfA==
   dependencies:
     "@tria-sdk/connect" "3.2.14"
     "@tria-sdk/utils" "2.1.5"

@@ -29,7 +29,7 @@ const MenuPage: React.FC = () => {
   }
 
   const handleLogin = () => {
-    handleTelegramAutoAuth()
+    // handleTelegramAutoAuth()
     showAuthModal()
   }
 
