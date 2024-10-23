@@ -72,7 +72,7 @@ export default function App({ Component, pageProps }: AppProps) {
         showCloseButton: true,
         layout: ["email-phone", "web2"],
         web2LoginMethods: ["google", "apple", "telegram"],
-        emailPhoneLoginMethods: ["email-otp"],
+        emailPhoneLoginMethods: ["email"],
         web3LoginMethods: [],
         showDivider: false,
       }}
