@@ -492,6 +492,8 @@ export default function Roulette() {
       )
       window.location.reload()
     }
+    document.body.style.overflow = ""
+    document.body.style.height = ""
   }, [userState])
   useEffect(() => {
     if (calledFromRedeem && triaAccount && isReady) {
